@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Superhero Cards</title>
+    <style>
+        /* Add your styles for visually appealing display here */
+        .superhero-card {
+            border: 2px solid #ddd;
+            padding: 10px;
+            margin: 10px;
+            width: 300px;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .superhero-image {
+            width: 170px;
+            height: 180px;
+        }
+
+        .bachelor-true {
+            color: red;
+        }
+
+        .bachelor-false {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+
+        function SuperheroCard({ name, age, powers, address, imageUrl, isBachelor }) {
+            return (
+                <div className="superhero-card">
+                    <h2>{name}</h2>
+                    <img src={imageUrl} alt={name} className="superhero-image" />
+                    <p>Age: {age}</p>
+                    <p>Powers: {powers.join(', ')}</p>
+                    <p>Address: {address.street}, {address.city}, {address.country}</p>
+                    <p className={isBachelor ? 'bachelor-true' : 'bachelor-false'}>
+                        {isBachelor ? 'Bachelor: True' : 'Bachelor: False'}
+                    </p>
+                </div>
+            );
+        }
+
+        function App() {
+            const superheroes = [
+                {
+                    name: "Superman",
+                    powers: ["Laser Fry", "Fly", "Runs Fast"],
+                    address: {
+                        street: "Central St",
+                        city: "New York",
+                        country: "USA",
+                    },
+                    age: 41,
+                    isBachelor: false,
+                    imageUrl: "https://c8.alamy.com/comp/2R7EMM0/portrait-of-a-drawing-of-superman-superhero-warner-dc-and-comics-concept-2R7EMM0.jpg",
+                },
+                {
+                    name: "Batman",
+                    powers: ["Rich", "Fly", "Genius"],
+                    address: {
+                        street: "Gotham St",
+                        city: "Gotham",
+                        country: "USA",
+                    },
+                    age: 21,
+                    isBachelor: true,
+                    imageUrl: "https://rukminim2.flixcart.com/image/850/1000/poster/7/d/g/batman-portrait-bt455566-medium-original-imaekp86fhb3fhxf.jpeg",
+                },
+                {
+                    name: "Superman",
+                    powers: ["Laser Fry", "Fly", "Runs Fast"],
+                    address: {
+                        street: "Central St",
+                        city: "New York",
+                        country: "USA",
+                    },
+                    age: 41,
+                    isBachelor: false,
+                    imageUrl: "https://c8.alamy.com/comp/2R7EMM0/portrait-of-a-drawing-of-superman-superhero-warner-dc-and-comics-concept-2R7EMM0.jpg",
+                }
+            ];
+
+            return (
+                <div>
+                    {superheroes.map((superhero, index) => (
+                        <SuperheroCard
+                            key={index}
+                            name={superhero.name}
+                            age={superhero.age}
+                            powers={superhero.powers}
+                            address={superhero.address}
+                            imageUrl={superhero.imageUrl}
+                            isBachelor={superhero.isBachelor}
+                        />
+                    ))}
+                </div>
+            );
+        }
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
+</body>
+</html>
